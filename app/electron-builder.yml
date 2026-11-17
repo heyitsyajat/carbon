@@ -1,0 +1,59 @@
+appId: com.carbon.app
+productName: Carbon
+copyright: Copyright © 2026 Carbon contributors
+
+directories:
+  output: release
+  buildResources: build
+
+files:
+  - dist/main/**/*
+  - dist/preload/**/*
+  - dist/renderer/**/*
+  - package.json
+
+extraMetadata:
+  main: dist/main/index.js
+
+asar: true
+compression: normal
+removePackageScripts: true
+
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+    - target: portable
+      arch:
+        - x64
+  icon: build/icon.ico
+  publisherName: Carbon
+  verifyUpdateCodeSignature: false
+  # Code signing is read from the environment (do NOT commit certificates):
+  #   CSC_LINK          path or base64 to a .pfx file
+  #   CSC_KEY_PASSWORD  password for that certificate
+  # The build is unsigned by default: `signAndEditExecutable` is false because
+  # there is no certificate, and enabling it makes electron-builder download a
+  # signing toolchain that needs symlink privileges on Windows. Set it back to
+  # true (plus the two variables above) when you sign releases in CI.
+  signAndEditExecutable: false
+  requestedExecutionLevel: asInvoker
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowElevation: true
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Carbon
+  uninstallDisplayName: Carbon
+  deleteAppDataOnUninstall: false
+  artifactName: Carbon-${version}-Setup.${ext}
+
+portable:
+  artifactName: Carbon-${version}-Portable.${ext}
+  requestExecutionLevel: user
+
+publish: null

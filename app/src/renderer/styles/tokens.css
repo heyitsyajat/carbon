@@ -1,0 +1,188 @@
+/* ==========================================================================
+   Carbon design tokens
+   Peach + burgundy. Warm paper light theme, burgundy-tinted dark theme.
+   Every colour used by the UI is defined here — no ad hoc hex values in
+   component styles.
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../fonts/inter-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
+    U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('../fonts/newsreader-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
+    U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  /* Type */
+  --font-ui: 'Inter', 'Segoe UI Variable Text', 'Segoe UI', system-ui, sans-serif;
+  --font-display: 'Newsreader', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --font-editor: 'Newsreader', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --font-mono: 'Cascadia Code', 'Cascadia Mono', ui-monospace, Consolas, monospace;
+
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-base: 13px;
+  --text-md: 14px;
+  --text-lg: 16px;
+  --text-xl: 20px;
+  --text-2xl: 26px;
+  --text-3xl: 34px;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 560;
+  --weight-bold: 640;
+
+  /* Spacing — tight, 2px based */
+  --space-1: 2px;
+  --space-2: 4px;
+  --space-3: 6px;
+  --space-4: 8px;
+  --space-5: 10px;
+  --space-6: 12px;
+  --space-7: 16px;
+  --space-8: 20px;
+  --space-9: 24px;
+  --space-10: 32px;
+  --space-11: 40px;
+  --space-12: 56px;
+
+  /* Radii */
+  --radius-xs: 3px;
+  --radius-sm: 5px;
+  --radius-md: 7px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --radius-pill: 999px;
+
+  /* Motion — subtle, no bounce */
+  --motion-fast: 120ms ease-out;
+  --motion-base: 160ms ease-out;
+  --motion-slow: 180ms ease-out;
+
+  /* Layout */
+  --titlebar-height: 38px;
+  --tabbar-height: 36px;
+  --statusbar-height: 26px;
+  --ribbon-width: 44px;
+  --editor-font-size: 17px;
+  --content-max: 780px;
+
+  --shadow-none: none;
+  --shadow-popover: 0 12px 32px -12px rgba(58, 20, 30, 0.28), 0 1px 2px rgba(58, 20, 30, 0.08);
+  --shadow-dialog: 0 24px 60px -20px rgba(40, 12, 20, 0.4);
+}
+
+:root[data-line-width='narrow'] {
+  --content-max: 600px;
+}
+:root[data-line-width='wide'] {
+  --content-max: 780px;
+}
+:root[data-line-width='full'] {
+  --content-max: 100%;
+}
+
+/* ------------------------------- light ---------------------------------- */
+
+:root,
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --surface-canvas: #fdf7f3;
+  --surface-raised: #fffdfb;
+  --surface-panel: #fbf0e9;
+  --surface-chrome: #f8ebe2;
+  --surface-sunken: #f6e7dd;
+  --surface-hover: #f7e3d7;
+  --surface-selected: #f5d9ca;
+
+  --ink: #2a151a;
+  --ink-soft: #63424a;
+  --ink-muted: #8a6a70;
+  --ink-faint: #a98c8f;
+  --ink-inverse: #fff7f3;
+
+  --line: #ecd9cd;
+  --line-strong: #e2c8ba;
+  --line-faint: #f2e4da;
+
+  --accent: #7a1f33;
+  --accent-hover: #681829;
+  --accent-soft: #f6e0e2;
+  --accent-ink: #fff5f2;
+
+  --accent-2: #f4a58a;
+  --accent-2-hover: #ee9377;
+  --accent-2-soft: #fdeee5;
+
+  --success: #3f6f4f;
+  --success-soft: #e6efe6;
+  --warning: #8a5a12;
+  --warning-soft: #f8ecdc;
+  --danger: #9a2430;
+  --danger-soft: #fbe4e4;
+
+  --overlay: rgba(42, 21, 26, 0.32);
+  --code-bg: #f6ece4;
+  --selection: rgba(122, 31, 51, 0.14);
+  --candle: #7a1f33;
+}
+
+/* -------------------------------- dark ---------------------------------- */
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --surface-canvas: #1b0f14;
+  --surface-raised: #241419;
+  --surface-panel: #1e1117;
+  --surface-chrome: #180d12;
+  --surface-sunken: #231318;
+  --surface-hover: #2b1720;
+  --surface-selected: #3a1d28;
+
+  --ink: #f6eae4;
+  --ink-soft: #d7bcbf;
+  --ink-muted: #ab8b90;
+  --ink-faint: #8a6b72;
+  --ink-inverse: #1b0f14;
+
+  --line: #33202a;
+  --line-strong: #432a35;
+  --line-faint: #281820;
+
+  --accent: #e9a08d;
+  --accent-hover: #f2b6a3;
+  --accent-soft: #391d25;
+  --accent-ink: #2a1016;
+
+  --accent-2: #f4a58a;
+  --accent-2-hover: #f7b79f;
+  --accent-2-soft: #33201d;
+
+  --success: #8bbf9a;
+  --success-soft: #1f2b23;
+  --warning: #e0b07a;
+  --warning-soft: #2e2418;
+  --danger: #f08a8a;
+  --danger-soft: #341a1d;
+
+  --overlay: rgba(10, 5, 7, 0.6);
+  --code-bg: #26161c;
+  --selection: rgba(244, 165, 138, 0.22);
+  --candle: #f4a58a;
+}
