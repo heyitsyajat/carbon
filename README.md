@@ -1,6 +1,6 @@
 # Carbon
 
-**A local-first Markdown app for Windows.** Your notes are plain files in a folder you choose — with links, full-text search, a note graph, daily notes, templates, export and import built in. AI is optional.
+**A local-first Markdown app for Windows.** Notes are plain files in a folder you choose — with links, full-text search, a note graph, daily notes and templates built in. AI is optional, and when you turn it on it can read your selection, the open note, or several notes at once.
 
 [![Latest release](https://img.shields.io/github/v/release/heyitsyajat/carbon?label=download&color=7A1F33)](https://github.com/heyitsyajat/carbon/releases/latest)
 [![License: MIT](https://img.shields.io/badge/license-MIT-7A1F33.svg)](LICENSE)
@@ -16,15 +16,15 @@
 | **Installer** | Normal use — Start menu and desktop shortcuts, per-user install | [Carbon-1.0.0-Setup.exe](https://github.com/heyitsyajat/carbon/releases/latest/download/Carbon-1.0.0-Setup.exe) |
 | **Portable** | Running from a USB stick or without installing | [Carbon-1.0.0-Portable.exe](https://github.com/heyitsyajat/carbon/releases/latest/download/Carbon-1.0.0-Portable.exe) |
 
-Both are 64-bit Windows builds. See [Releases](https://github.com/heyitsyajat/carbon/releases) for notes and checksums.
+64-bit Windows 10 or 11. See [Releases](https://github.com/heyitsyajat/carbon/releases) for notes and SHA-256 checksums.
 
-> **Unsigned build.** Carbon is not code-signed, so Windows SmartScreen may show “Windows protected your PC”. Choose **More info → Run anyway**, or check the published SHA-256 checksum first. Signing instructions for maintainers are in [`.github/workflows/release.yml`](.github/workflows/release.yml).
+> **Unsigned build.** Carbon is not code-signed, so SmartScreen may show “Windows protected your PC”. Choose **More info → Run anyway**, or verify the checksum against the published `Carbon-1.0.0-SHA256SUMS.txt` first.
 
 ## Contents
 
-- [Why Carbon](#why-carbon)
 - [Features](#features)
-- [AI is optional](#ai-is-optional)
+- [AI, when you want it](#ai-when-you-want-it)
+- [AI recipes](#ai-recipes)
 - [Requirements](#requirements)
 - [Keyboard shortcuts](#keyboard-shortcuts)
 - [Screenshots](#screenshots)
@@ -32,61 +32,89 @@ Both are 64-bit Windows builds. See [Releases](https://github.com/heyitsyajat/ca
 - [Privacy](#privacy)
 - [License](#license)
 
-## Why Carbon
-
-Most note apps ask you to trust a database and a subscription. Carbon does the opposite:
-
-- **A vault is a folder.** Every note is a `.md` file. Open the same folder in any editor, sync tool or backup, and keep it forever.
-- **No account and no server.** There is nothing to sign up for, nothing to sync through us, and no telemetry.
-- **AI where you want it.** Run a local model, point at any OpenAI-compatible endpoint, or use your own key — or skip AI entirely and lose no note-taking features.
-- **Keyboard-first.** A quick switcher, command palette, vault search, daily notes and remappable shortcuts.
-
 ## Features
 
-### Find what you wrote
-- **Quick switcher** (`Ctrl+O`) — fuzzy jump to a note by title, path or tag. Type `tag:` to narrow by tag.
-- **Vault search** (`Ctrl+Shift+F`) — full-text search with tag and folder filters, matching lines and a snippet.
-- **Command palette** (`Ctrl+P`) — every command, discoverable by name.
-- **Tag index** — every tag in the vault with note counts; click to search that tag.
+### Notes that stay yours
+- **A vault is a folder.** Every note is a `.md` file you can open in any editor, sync with any tool, and back up by copying.
+- **Wiki links** — `[[Note name]]` connects notes, with backlinks, outgoing links, unlinked mentions and one-click creation of unresolved links.
+- **Graph view** (`Ctrl+G`) — the vault as a force-directed map; node size follows link count, click to open a note.
+- **Daily notes** (`Ctrl+D`) — folder, filename pattern and template are configurable.
+- **Templates** (`Ctrl+Shift+T`) — `{{title}}`, `{{date}}`, `{{date:dddd D MMMM}}` and `{{time}}`, stored in a vault folder.
+- **Meeting notes** (`Ctrl+Shift+M`) — a timestamped template with attendees, decisions and action items.
+- **Import and export** — bring in an Obsidian vault or any Markdown folder; export a note as Markdown, HTML or PDF.
+- **Delete is reversible.** Notes go to the Windows Recycle Bin, not into the void.
 
-### Connect notes
-- **Wiki links** — `[[Note name]]` links notes. Unresolved links can be turned into notes in one click.
-- **Backlinks and mentions** — outgoing links, backlinks, and unlinked mentions of the current note's title.
-- **Graph view** (`Ctrl+G`) — force layout of the vault; node size follows link count, click to open.
+### Find anything
+- **Quick switcher** (`Ctrl+O`) — fuzzy match on title, path or tag; `tag:` narrows the search.
+- **Vault search** (`Ctrl+Shift+F`) — full text with tag and folder filters, matching lines and snippets.
+- **Command palette** (`Ctrl+P`) — run any command without leaving the keyboard.
+- **Tag index** — every tag with its note count; click to search it.
 
-### Write and organise
-- **Daily notes** (`Ctrl+D`) — configurable folder, filename pattern and template.
-- **Templates** (`Ctrl+Shift+T`) — `{{date}}`, `{{date:dddd D MMMM}}`, `{{time}}` and `{{title}}`, saved in your templates folder.
-- **Meeting notes** (`Ctrl+Shift+M`) — timestamped template with attendees, decisions and action items; paste a transcript for an AI summary when configured.
-- **Markdown editor** — CodeMirror with live preview, split view, focus mode and adjustable text width.
-- **Export and import** — Markdown, HTML or PDF per note; import an Obsidian vault or any Markdown folder.
+### Write without friction
+- **CodeMirror editor** with live preview, split view and focus mode (`Ctrl+Alt+F`).
+- **Autosave** with an honest saved/dirty indicator, plus explicit `Ctrl+S`.
+- **Remappable shortcuts** — every command, with duplicate detection, in Settings → Shortcuts.
 
-### Make it yours
-- **Focus mode** (`Ctrl+Alt+F`) — hides sidebars and centres the editor.
-- **Shortcut editor** — remap any command in Settings → Shortcuts, with duplicate detection.
-- **Quiet, consistent interface** — peach and burgundy themes, local fonts, remembered window bounds and sidebar widths, subtle autosave status.
-- **Clear failure states** — errors explain what happened and the next step instead of showing raw exceptions.
+## AI, when you want it
 
-## AI is optional
+Setup offers two equal choices: **Set up AI provider** or **Continue without AI**. Skipping AI loses no note features — assistant buttons simply explain how to add a provider later, and you can change your mind in **Settings → AI** at any time.
 
 ![Settings on the AI section, showing local and hosted providers](website/public/screenshots/settings-ai-light.png)
 
-Setup asks once, with two equal choices: **Set up AI provider** or **Continue without AI**. Choosing the second leaves every note feature working; assistant surfaces show a short “Add an AI provider in Settings” prompt instead of an error, and the wizard does not appear again.
+Press `Ctrl+K` to open the assistant. It works on **whatever you have selected**: a passage, the whole note, or the open note plus up to five notes selected in the sidebar. The panel tells you which scope it is using before you run anything.
 
-You can add or change a provider at any time in **Settings → AI**:
+| Action | What it does | Shortcut |
+| --- | --- | --- |
+| **Continue** | Writes the next 2–4 sentences in your voice, without repeating the last line | `Ctrl+Alt+C` |
+| **Rewrite** | Tightens the selected passage, keeping meaning and Markdown | `Ctrl+Alt+R` |
+| **Summarize** | 3–6 bullets, most important point first | `Ctrl+Alt+S` |
+| **Bullets** | Turns prose into a scannable list | `Ctrl+Alt+B` |
+| **Table** | Shapes structured prose into a Markdown table, never inventing cells | `Ctrl+Alt+T` |
+| **Actions** | Extracts `- [ ]` checkboxes with owners and dates in bold | `Ctrl+Alt+A` |
+| **Ask about this note** | Answers a question with the note as context | — |
+| **Custom instruction** | “Tighten the intro”, “Add a risks section”, “Rewrite for a non-technical reader” | — |
+| **Meeting transcript** | Paste a transcript and get a summary plus action items | — |
+
+Results stream in and can be **inserted at the cursor, used to replace the selection, appended to the end of the note, or copied** — with a **Stop** button while they generate, and no text changed until you choose.
+
+### Context that makes answers useful
+
+- **Target a passage.** Select text, then hit an action: only that text is sent and replaced.
+- **Ask across notes.** Select several notes in the sidebar, then ask “What did we decide about pricing?” — up to five extra notes are attached as context.
+- **Meeting mode** turns a pasted transcript into `## Summary` and `## Action items`, pulling owners out only when someone actually said them.
+- **Standing instructions.** A custom system prompt in Settings → AI applies to every request (tone, spelling, house style), alongside temperature and max-token limits.
+- **Test before you trust it.** *Test connection* lists available models and reports the actual error if a provider is unreachable.
+
+### Providers
 
 | Backend | What it needs | Where text goes |
 | --- | --- | --- |
 | Local (Ollama) | Ollama at `http://127.0.0.1:11434` | Stays on this computer |
-| OpenAI-compatible | Any `/v1` chat-completions endpoint (LM Studio, vLLM, OpenRouter, your gateway) | The endpoint you configure |
-| OpenAI / Anthropic | Your own API key | The provider you choose |
+| OpenAI-compatible | Any `/v1` chat-completions endpoint — LM Studio, vLLM, OpenRouter, your own gateway | The endpoint you configure |
+| OpenAI | Your own API key | OpenAI |
+| Anthropic | Your own Anthropic API key | Anthropic |
 
-Only the text an action needs is sent: the current note, or the selection if there is one. API keys are encrypted with Windows secure storage, never written to the settings file, and never exposed to the editor process.
+API keys are encrypted with Windows secure storage, held by the main process, and never exposed to the editor. Only the text an action needs is sent — no vault scanning, no background requests.
+
+## AI recipes
+
+Copy-paste starting points for the **Custom instruction** box:
+
+| Goal | Instruction | Use with |
+| --- | --- | --- |
+| Meeting follow-up | “Turn this into a summary and a checklist of owners and deadlines.” | Transcript or meeting note |
+| Client email | “Rewrite this as a short, friendly client email. Keep the dates.” | Selection |
+| Decision log | “Extract the decisions and their rationale as a table.” | Several notes selected |
+| Study notes | “Turn this into question-and-answer flashcards.” | Current note |
+| Editorial pass | “Cut 20% of the words without losing meaning.” | Selection |
+| Project pulse | “What changed, what is blocked, and what is next?” | Weekly notes selected |
+| Documentation | “Explain this code block for a new contributor, then list the assumptions.” | Selection |
+| Trip planning | “Organise these notes into an itinerary table with dates and costs.” | Current note |
 
 ## Requirements
 
 - Windows 10 or 11, 64-bit
-- No runtime, account or network connection required for local use
+- No runtime, account or network connection for local note-taking
 
 ## Keyboard shortcuts
 
@@ -101,9 +129,11 @@ Only the text an action needs is sent: the current note, or the selection if the
 | `Ctrl+B` | Toggle file list | `Ctrl+E` | Editor / split / preview |
 | `Ctrl+Shift+B` | Toggle side panel | `Ctrl+Alt+F` | Focus mode |
 | `Ctrl+K` | Writing assistant | `Ctrl+,` | Settings |
+| `Ctrl+Alt+R` | Rewrite selection | `Ctrl+Alt+S` | Summarize note |
+| `Ctrl+Alt+A` | Extract action items | `Ctrl+Alt+C` | Continue writing |
 | `F1` | Instructions | `Ctrl+Shift+Backspace` | Delete note |
 
-Every binding can be changed in **Settings → Shortcuts** and is listed in **Help → Instructions**.
+Every binding can be changed in **Settings → Shortcuts**.
 
 ## Screenshots
 
@@ -118,7 +148,7 @@ Screenshots are captured from the real app with an isolated profile — see [Dev
 
 ## Development
 
-Prerequisites: Node.js 20+ and npm. Git Bash or PowerShell for the scripts.
+Prerequisites: Node.js 20+ and npm.
 
 ```bash
 npm run install:all     # root, app and website dependencies
@@ -136,7 +166,7 @@ npm run website:dev     # landing page at http://localhost:5173
 ```
 app/                    Electron application
   src/main/               windows, menus, vault access, settings, secrets, AI service, exporter
-  src/shared/             types, IPC contract, Markdown, templates, graph, fuzzy search, export, keybindings
+  src/shared/             types, IPC contract, Markdown, templates, graph, fuzzy search, AI prompts
   src/renderer/           React UI, CodeMirror editor, design tokens, local fonts
   build/                  generated logo, PNG icons and icon.ico
   scripts/                build, brand generation, demo vault, screenshot capture
@@ -148,7 +178,7 @@ website/                Vite + React landing page using the same tokens and bran
 
 - **Main process owns the filesystem and secrets.** The renderer talks through a typed IPC bridge (`src/shared/ipc.ts`); it never receives API keys. Keys live in a safeStorage-encrypted `secrets.json`.
 - **Every path is validated.** Vault access resolves paths inside the vault root and rejects anything that escapes it (`src/shared/paths.ts`).
-- **Shared logic is pure and tested.** Fuzzy matching, template expansion, graph layout, export documents, keybinding normalisation and error translation live in `src/shared` with tests in `src/main/__tests__`.
+- **Prompts are pure functions.** `src/shared/ai/actions.ts` builds every request and is unit tested, so the assistant's behaviour does not depend on UI state.
 - **AI is opt-in.** `ai.enabled` gates every request; disabled requests explain how to add a provider rather than throwing.
 
 ### Brand and screenshots
@@ -172,7 +202,7 @@ node scripts/capture-screenshots.mjs light
 
 ## Privacy
 
-No accounts, no analytics, no update pings, no background network traffic. The only outbound request is the AI call you explicitly start, to the backend you configured. Local models keep even that on your machine.
+No accounts, no analytics, no update pings, no background network traffic. The only outbound request is the AI call you explicitly start, to the backend you configured. With Ollama, even that stays on your machine.
 
 ## License
 
