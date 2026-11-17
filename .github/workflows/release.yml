@@ -30,12 +30,20 @@ jobs:
           # Optional: add CSC_LINK and CSC_KEY_PASSWORD secrets to sign the build.
           CSC_LINK: ${{ secrets.CSC_LINK }}
           CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
+      - name: Generate SHA-256 checksums
+        shell: pwsh
+        run: |
+          $version = (Get-Content package.json -Raw | ConvertFrom-Json).version
+          Get-ChildItem release/*.exe | ForEach-Object {
+            "$((Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLower())  $($_.Name)"
+          } | Set-Content "release/Carbon-$version-SHA256SUMS.txt"
       - uses: actions/upload-artifact@v4
         with:
           name: carbon-windows
           path: |
             app/release/*.exe
             app/release/*.blockmap
+            app/release/*SHA256SUMS.txt
           if-no-files-found: error
       - uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
@@ -43,4 +51,5 @@ jobs:
           files: |
             app/release/*.exe
             app/release/*.blockmap
+            app/release/*SHA256SUMS.txt
           generate_release_notes: true
