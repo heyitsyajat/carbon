@@ -1,11 +1,8 @@
 name: Landing page
 
+# Publishes the landing page. Manual only: turn this on deliberately from the
+# Actions tab (or enable Pages in repository settings) when you want it live.
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'website/**'
-      - '.github/workflows/pages.yml'
   workflow_dispatch:
 
 permissions:
@@ -36,6 +33,8 @@ jobs:
       - run: npm ci
       - run: npm run build
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: website/dist
