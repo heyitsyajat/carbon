@@ -20,6 +20,17 @@
 
 > **Unsigned build.** Carbon is not code-signed, so SmartScreen may show “Windows protected your PC”. Choose **More info → Run anyway**, or verify the checksum against the published `Carbon-1.0.0-SHA256SUMS.txt` first.
 
+### Android
+
+Carbon also ships as a native Android app with the same warm theme, vault model and assistant. It lives in [`android/`](android/): Kotlin, Jetpack Compose and plain Markdown files in app-specific storage. Build an installable APK with:
+
+```bash
+cd android
+./gradlew assembleDebug        # app/build/outputs/apk/debug/app-debug.apk
+```
+
+The Android app needs JDK 17 and the Android SDK (platform 35, build-tools 35.0.0). It is not on Google Play; sideload the APK or install it with `adb install`.
+
 ## Contents
 
 - [Features](#features)
@@ -113,7 +124,8 @@ Copy-paste starting points for the **Custom instruction** box:
 
 ## Requirements
 
-- Windows 10 or 11, 64-bit
+- Windows 10 or 11, 64-bit for the desktop app
+- Android 8.0 (API 26) or newer for the Android app
 - No runtime, account or network connection for local note-taking
 
 ## Keyboard shortcuts
@@ -164,6 +176,9 @@ npm run website:dev     # landing page at http://localhost:5173
 ### Project layout
 
 ```
+android/                Native Android app (Kotlin, Jetpack Compose)
+  app/src/main/java/      data, domain, AI client, Compose UI
+  app/src/test/java/      JVM unit tests for Markdown, search, templates, graph
 app/                    Electron application
   src/main/               windows, menus, vault access, settings, secrets, AI service, exporter
   src/shared/             types, IPC contract, Markdown, templates, graph, fuzzy search, AI prompts
